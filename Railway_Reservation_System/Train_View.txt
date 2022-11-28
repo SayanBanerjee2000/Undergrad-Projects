@@ -1,0 +1,41 @@
+DECLARE
+train_id number;
+train_name varchar2(50);
+compartment varchar2(10);
+source1 varchar2(20);
+stop1 varchar2(20);
+stop2 varchar2(20);
+destination1 varchar2(20);
+max_seat_available number;
+date_available date;
+c1 number;
+c2 varchar2(50);
+c3 varchar2(50);
+c4 varchar2(10);
+c5 train%rowtype;
+inputSource varchar2(50);
+inputDestination varchar2(50);
+    v_train train%ROWTYPE;
+    CURSOR cur_train IS
+      SELECT *
+      FROM   train WHERE (source = inputSource or
+      stop1 = inputSource or stop2 = inputSource)
+      AND (destination = inputDestination or stop1 = inputDestination
+      or stop2 = inputDestination);
+BEGIN
+
+    inputSource:= '&source1';
+    inputDestination:= '&destination1';
+    OPEN cur_train;
+    LOOP
+        FETCH cur_train INTO v_train;
+        exit WHEN cur_train%NOTFOUND;
+        dbms_output.Put_line('Name: '
+                             || v_train.train_name || ' ::    Train ID: ' || v_train.train_id
+			     || ' ::    Date Available: ' || v_train.date_available
+                             || '  ::   compartment: '
+			     || v_train.compartment);
+    END LOOP;
+    CLOSE cur_train;
+END; 
+/

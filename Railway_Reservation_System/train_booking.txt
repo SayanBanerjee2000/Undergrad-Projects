@@ -1,0 +1,62 @@
+DECLARE
+book_id number;
+train_id number;
+pnr varchar2(10);
+seats number;
+train_name varchar2(50);
+source varchar2(50);
+destination varchar2(50);
+ans varchar2(5);
+answer varchar2(5);
+t_name varchar2(50);
+train varchar2(50);
+user_id number;
+uname number;
+t_id number;
+c1 number;
+c2 varchar2(50);
+c3 number;
+c4 varchar2(10);
+c5 varchar2(5);
+c6 varchar2(5);
+inputDestination varchar2(20);
+inputSource varchar2(20);
+source1 varchar2(20);
+destination1 varchar2(20);
+bk_seat number;
+max_seat_available number;
+BEGIN
+user_id:=&uname;
+train:='&t_name';
+inputSource:='&source1';
+inputDestination:='&destination1';
+seats:=&bk_seat;
+SELECT train_id into c1 from train where
+train_name = train AND
+(source = inputSource
+or stop1 = inputSource
+or stop2 = inputSource)
+      AND (destination = inputDestination
+or stop1 = inputDestination
+      or stop2 = inputDestination);
+SELECT max_seat_available into c3 from train
+where train_name = train AND (source = inputSource
+or stop1 = inputSource
+or stop2 = inputSource)
+      AND (destination = inputDestination
+or stop1 = inputDestination
+      or stop2 = inputDestination);
+IF(c3>=seats) THEN
+SELECT MAX(book_id) into c5 from booking;
+book_id:=c5+1;
+SELECT MIN(pnr) into c6 from reg_user;
+pnr:='p'|| user_id;
+INSERT INTO booking values(book_id,c1,pnr,train,inputSource,inputDestination,seats);
+c3:=c3-seats;
+UPDATE train
+SET max_seat_available = c3 where train_id = c1;
+ELSE
+dbms_output.put_line('Seats not available');
+END IF;
+END;
+/

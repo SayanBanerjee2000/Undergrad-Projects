@@ -1,0 +1,15 @@
+declare
+ user_id varchar2(50);
+ password  varchar2(50);
+ name  varchar2(80);
+ email  varchar2(80);
+ pnr varchar2(10);
+begin
+ user_id := '&user_id';
+ password := '&password';
+ name := '&name';
+ email := '&email';
+ pnr := 'p'||user_id;
+ insert into reg_user values(user_id,password,name,email,pnr);
+end;
+/

@@ -1,0 +1,9 @@
+DECLARE
+   user_id reg_user.user_id%TYPE;
+   password reg_user.password%TYPE;
+BEGIN
+   user_id:= '&user_id';
+   password := '&password';
+   user_login(user_id, password);
+END;
+/

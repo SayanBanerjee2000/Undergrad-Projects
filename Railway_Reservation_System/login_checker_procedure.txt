@@ -1,0 +1,16 @@
+CREATE OR REPLACE PROCEDURE user_login (uname IN reg_user.user_id%TYPE, pass IN reg_user.password%TYPE)
+IS 
+   pass_checker reg_user.password%TYPE;
+BEGIN
+   SELECT password INTO pass_checker
+   FROM reg_user
+   WHERE user_id LIKE uname;
+   IF pass_checker LIKE pass THEN
+      DBMS_OUTPUT.PUT_LINE('login successful');
+   ELSE
+      DBMS_OUTPUT.PUT_LINE('User Incorrect');
+   END IF;
+   EXCEPTION WHEN no_data_found THEN
+      DBMS_OUTPUT.PUT_LINE('User incorrect');
+END;
+/
