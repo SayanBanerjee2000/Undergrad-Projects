@@ -1,3 +1,8 @@
+
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/6d213caf-39c8-45d2-b0c9-51b9c69f3dc9" />
+
+
+
 This project proposes a hybrid method for real-time analysis of sports footage to extract key insights. It leverages YOLOv8 for accurate player detection and DeepSORT for consistent tracking across video frames. To assess player performance, the system includes movement and tactical analysis modules that compute metrics such as speed, acceleration, distance covered, and court coverage. For predictive analytics, a Long Short-Term Memory (LSTM) model is used to forecast player movements across three tactical zones defined on the court. The detection component was trained on a custom-annotated dataset to ensure robust performance and generalization.
 
 
