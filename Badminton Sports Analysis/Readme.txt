@@ -9,6 +9,8 @@ player_detection folder – This folder contains the best model after running 50
 Court.jpeg – This is an image which is required for project_code file to overlay the results on a court image for better visualization (E.g. Heatmaps, Zone Analysis). 
 
 Test_clip.mp4 – This is the test clip for the project to test the model’s performance and evaluate the players. 
+
+The full project can be found in this link : https://drive.google.com/drive/folders/1uiBO8umZv1Tv7cvvzVDRj2nN-eDQQ8U1?usp=sharing
  
 
 
